@@ -1,10 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"> </script>
+    <script>
+        $(document).ready(function(){
+            $("#p2").hide();
+            $("#div1").hide();
+            $("#btn1").click(function(){
+                var user = $("#test").val()
+
+                alert("Username: " + user);
+
+                $.get("https://api.github.com/users/"+user+"/repos", function(data, status) {
+                    alert("Data: " + JSON.stringify(data) + "\nStatus: " + status);
+
+                    $("#btn2").click(function(){
+                        const arrId = [];
+                        const arrName = [];
+                        const arrDes = [];
+                        const arrFoll = [];
+                        const arrLang = [];
+
+                        for (var i=0; i<data.length;i++){
+                            var id = JSON.stringify(data[i].id);
+                            var name = JSON.stringify(data[i].name);
+                            var description = JSON.stringify(data[i].description);
+                            var followers = JSON.stringify(data[i].stargazers_count);
+                            var language = JSON.stringify(data[i].language);
+
+                            arrId.push(id);
+                            arrName.push(name);
+                            arrDes.push(description);
+                            arrFoll.push(followers);
+                            arrLang.push(language);
+
+                            console.log(arrId);
+                            console.log(arrName);
+                            console.log(arrDes);
+                            console.log(arrFoll);
+                            console.log(arrLang);
+
+                            if (i===data.length-1){
+                                $("#p2").show();
+                            }
+                        }
+
+                    });
+                });
+            });
+        });
+
+    </script>
 </head>
 <body>
-
+    <h1>Prueba Bootstrap and JQuery</h1>
+    <p id ="p1">Name: <input type="text" id="test" value=""></p>
+    <p id ="p2">Los datos se han cargado correctamente</p>
+    <button id="btn1">Show Value</button>
+    <button id="btn2">Print all information</button>
+    <div id = "div1">elementos ocultos</div>
 </body>
 </html>
