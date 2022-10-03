@@ -12,7 +12,7 @@
             $("#p2").hide();
             $("#div1").hide();
             $("#tablaTest").hide();
-            $(".table").hide();
+
 
             $("#btn1").click(function(){
                 var user = $("#test").val()
@@ -21,41 +21,51 @@
                     alert("Data: " + JSON.stringify(data) + "\nStatus: " + status);
 
                     $("#btn2").click(function(){
+                        //location.replace("https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js")
                         const arrId = [];
                         const arrName = [];
                         const arrDes = [];
                         const arrFoll = [];
+                        const arrSize = [];
                         const arrLang = [];
 
                         /**
                          * JSON.stringify(data) ponerlo solo cuando tus datos son vectores o objetos
+                         * JSON.parse es lo contrario que JSON.stringify()
+                         *
+                         * 1. redirect -- cambiar de pagina
+                         * 2. que vaya a la pagina o que le pases un parametre de la url resultat.html? nombre:
                          */
                         for (var i=0; i<data.length;i++){
                             var id = data[i].id;
                             var name = data[i].name;
                             var description = data[i].description;
                             var followers = data[i].stargazers_count;
+                            var size = data[i].size;
                             var language = data[i].language;
 
                             arrId.push(id);
                             arrName.push(name);
                             arrDes.push(description);
                             arrFoll.push(followers);
+                            arrSize.push(size);
                             arrLang.push(language);
 
                             console.log(arrId);
                             console.log(arrName);
                             console.log(arrDes);
                             console.log(arrFoll);
+                            console.log(arrSize);
                             console.log(arrLang);
 
                             if (i===data.length-1){
                                 $("#p2").show();
                                 $("#tablaTest").show();
-                                $(".table").show();
+
 
                                 for (var j=0; j<data.length;j++) {
-                                    var row = "<tr><td>" + arrId[j] + "</td><td>" + arrName[j] + "</td><td>" + arrDes[j] + "</td><td>" + arrFoll[j] + "</td><td>" + arrLang[j] + "</td></tr>";
+                                    // añadir el que borro
+                                    var row = "<tr><td>" + arrId[j] + "</td><td>" + arrName[j] + "</td><td>" + arrDes[j] + "</td><td>" + arrFoll[j] + "</td><td>" + arrSize[j] + "</td><td>" + arrLang[j] + "</td></tr>";
                                     $(".table tbody").append(row);
                                 }
                             }
@@ -68,11 +78,11 @@
     </script>
 </head>
 <body>
-<h1 style="text-align:center">JQuery & Bootstrap</h1>
-    <br>
-    <p id ="p1" style="text-align:center" >Enter your username: <input type="text" id="test" value=""></p>
 
     <div id = "id" style="text-align:center">
+        <h1>JQuery & Bootstrap</h1>
+        <br>
+        <p id ="p1" >Enter your username: <input type="text" id="test" value=""></p>
         <button id="btn1">Save username</button>
         <button id="btn2">Print all information</button>
         <div id = "div1">elementos ocultos</div>
@@ -83,16 +93,16 @@
         <br>
     </div>
 
-
-    <div id="tablaTest" style="text-align:center">
+    <div class="container fluid" id="tablaTest" style="text-align:center">
         <h2>Tabla de información</h2>
-        <table class="table">
+        <table class="table table-striped">
             <thead>
                 <tr>
                     <th>Id</th>
                     <th>Name</th>
                     <th>Description</th>
                     <th>Followers</th>
+                    <th>Size</th>
                     <th>Language</th>
                 </tr>
             </thead>
