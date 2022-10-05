@@ -58,17 +58,20 @@
                             console.log(arrSize);
                             console.log(arrLang);
 
+
+                            window.location.href = 'tabla.html'; // redirigimos a otra pagina web
+
+                            /**
                             if (i===data.length-1){
                                 $("#p2").show();
                                 $("#tablaTest").show();
 
 
                                 for (var j=0; j<data.length;j++) {
-                                    // añadir el que borro
                                     var row = "<tr><td>" + arrId[j] + "</td><td>" + arrName[j] + "</td><td>" + arrDes[j] + "</td><td>" + arrFoll[j] + "</td><td>" + arrSize[j] + "</td><td>" + arrLang[j] + "</td></tr>";
                                     $(".table tbody").append(row);
                                 }
-                            }
+                            }*/
                         }
                     });
                 });
@@ -80,11 +83,12 @@
 <body>
 
     <div id = "id" style="text-align:center">
-        <h1>JQuery & Bootstrap</h1>
+        <br>
+        <h2>JQuery & Bootstrap</h2>
         <br>
         <p id ="p1" >Enter your username: <input type="text" id="test" value=""></p>
         <button id="btn1">Save username</button>
-        <button id="btn2">Print all information</button>
+        <input id="btn2" type="submit"> </input>
         <div id = "div1">elementos ocultos</div>
         <br>
         <br>
@@ -93,22 +97,23 @@
         <br>
     </div>
 
-    <div class="container fluid" id="tablaTest" style="text-align:center">
-        <h2>Tabla de información</h2>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Followers</th>
-                    <th>Size</th>
-                    <th>Language</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
-    </div>
-
+    <form action="tabla.html" method="post">
+        <div class="container fluid" id="tablaTest" style="text-align:center">
+            <h2>Tabla de información</h2>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Followers</th>
+                        <th>Size</th>
+                        <th>Language</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </form>
 </body>
 </html>
