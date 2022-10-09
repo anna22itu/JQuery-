@@ -9,14 +9,18 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
     <script  type="text/javascript">
         $(document).ready(function(){
-            // recibimos la información del index.html
-            $("#p2").show();
-            $("#tablaTest").show();
-            var user = $.get(valor);
-
-
+            // recibimos la información del index.html & creamos una instancia
+            const urlvalores = window.location.search;
+            console.log(urlvalores);
+            const urlParams = new URLSearchParams(urlvalores);
+            console.log(urlParams);
+            var user = urlParams.get('valor');
+            console.log(user);
             alert("The username recieved is: " + user);
+
             $.get("https://api.github.com/users/"+user+"/repos", function(data, status) {
+                $("#p2").show();
+                $("#tablaTest").show();
 
                 const arrId = [];
                 const arrName = [];
@@ -40,6 +44,12 @@
                     arrSize.push(size);
                     arrLang.push(language);
 
+                    console.log(arrId);
+                    console.log(arrName);
+                    console.log(arrDes);
+                    console.log(arrFoll);
+                    console.log(arrSize);
+                    console.log(arrLang);
 
                      if (i===data.length-1){
                         for (var j=0; j<data.length;j++) {
