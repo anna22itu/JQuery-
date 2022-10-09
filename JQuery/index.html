@@ -11,6 +11,7 @@
         $(document).ready(function(){
             $("#p2").hide();
             $("#div1").hide();
+            $("#id1").hide();
 
             $("#btn1").click(function(){
                 var user = $("#test").val()
@@ -18,10 +19,14 @@
                 $.get("https://api.github.com/users/"+user+"/repos", function(data, status) {
                     alert("Data: " + JSON.stringify(data) + "\nStatus: " + status);
 
-                    //window.location.href = 'tabla.html'; // otra manera de redirigirmos a otra pagina web
                     console.log(user);
-                    var orden= "valor= " +user;
-                    $("#a1 href").append(orden);
+
+                    $("#btn2").click(function() {
+                        $("#id1").hide();
+                        location.href = "tabla.html?valor=" + user;
+                    });
+
+                    //window.location.href = 'tabla.html'; // otra manera de redirigirmos a otra pagina web
 
                 });
             });
@@ -36,13 +41,16 @@
         <br>
         <p id ="p1" >Enter your username: <input type="text" id="test" value=""></p>
         <button id="btn1">Save username</button>
-        <a id="a1"  href = "tabla.html?valor=anna22itu"> <input id="btn2" type="submit"> </a>
         <div id = "div1">elementos ocultos</div>
         <br>
         <br>
         <p id ="p2" style="text-align:center" class="text-success">Los datos se han cargado correctamente</p>
         <br>
         <br>
+    </div>
+    <div id="id2" style="text-align:center">
+        <button id="btn2">Create table</button>
+        <a id="a1"  href =""> </a>
     </div>
 
 </body>
